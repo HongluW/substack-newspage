@@ -89,8 +89,13 @@ export default function NewsLayout() {
               </div>
 
               {/* Subtitle */}
-              <p className="text-white text-base leading-relaxed">
-                {article.subtitle}
+              <p className="text-white text-base leading-relaxed flex items-center">
+                {article.id === 1 && (
+                  <>Two firefighters were fatally shot and at least one more was injured while responding to a brush fire in Coeur d'Alene</> 
+                )}
+                {article.id === 2 && (
+                  <>The president's signature legislation is an effort to change America and further cement his power</>
+                )}
               </p>
 
               {/* Bullet points */}
@@ -165,10 +170,34 @@ export default function NewsLayout() {
             <div className="text-xs text-gray-400 pt-2">The Live Lens/Community Reporter Submission</div>
             {/* Large bullet points */}
             <ul className="space-y-4 mt-4">
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Tens of thousands flee central and northern Gaza after new evacuation orders and heavy bombing.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Reports: Israeli forces fired on unarmed crowds near food centers; over 500 Palestinians killed since May.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Ukraine hit by largest Russian aerial assault since invasion began; strikes reach far from frontlines.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Baltic states exit Mine Ban Treaty, citing new security threats.</li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">The Live Lens</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">Tens of thousands flee central and northern Gaza after new evacuation orders and heavy bombing.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">Layla Hassan</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">Reports: Israeli forces fired on unarmed crowds near food centers; over 500 Palestinians killed since May.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">The Dispatch</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">Ukraine hit by largest Russian aerial assault since invasion began; strikes reach far from frontlines.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">Jonas Feldman</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">Baltic states exit Mine Ban Treaty, citing new security threats.</span>
+              </li>
             </ul>
           </div>
           {/* RIGHT COLUMN: LOCAL NEWS */}
@@ -185,11 +214,41 @@ export default function NewsLayout() {
             <div className="text-xs text-gray-400 pt-2">Jason Bourne/Community Reporter Submission</div>
             {/* Large bullet points */}
             <ul className="space-y-4 mt-4">
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> San Francisco Board Approves New Affordable Housing Plan for Mission District.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> City Launches Crackdown on Illegal Sideshows After Weekend Traffic Chaos.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Golden Gate Park to Host Free Summer Concert Series Starting July 10.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> SFUSD Announces New Mental Health Resources for Public School Students.</li>
-              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Local Tech Startups Rally to Support Clean Energy Initiatives in Bay Area.</li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">The Perspective Press</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">San Francisco Board Approves New Affordable Housing Plan for Mission District.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">Maya Chen</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">City Launches Crackdown on Illegal Sideshows After Weekend Traffic Chaos.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">The New Narrative</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">Golden Gate Park to Host Free Summer Concert Series Starting July 10.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">Carlos Rivera</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">SFUSD Announces New Mental Health Resources for Public School Students.</span>
+              </li>
+              <li className="text-l font-medium flex items-start">
+                <div className="w-24 flex-shrink-0">
+                  <span className="bg-composer-bg hover:bg-composer-hover transition-colors rounded px-2 py-0.5 text-white font-bold text-xs cursor-pointer">The Insight Ledger</span>
+                </div>
+                <div className="w-px"></div>
+                <span className="hover:underline cursor-pointer ml-4">Local Tech Startups Rally to Support Clean Energy Initiatives in Bay Area.</span>
+              </li>
             </ul>
           </div>
         </div>
