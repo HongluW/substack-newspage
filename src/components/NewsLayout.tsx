@@ -49,96 +49,151 @@ function getRandomLikeNumber(articleIdx: number, bulletIdx: number) {
 
 export default function NewsLayout() {
   return (
-    <div className="bg-black text-white pl-20 md:pl-80 pr-20 md:pr-48 py-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
-        {newsArticles.map((article, articleIdx) => (
-          <div key={article.id} className="flex flex-col space-y-4">
-            {/* Category and Live indicator */}
-            <div className="flex items-center space-x-2">
-              {article.isLiveUpdate && (
-                <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
-                  LIVE UPDATES
-                </span>
-              )}
-              {!article.isLiveUpdate && (
-                <span className="bg-white text-black text-xs font-bold px-2 py-1 rounded">
-                  {article.category}
-                </span>
-              )}
-            </div>
+    <>
+      <div className="bg-black text-white pl-20 md:pl-80 pr-20 md:pr-48 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
+          {newsArticles.map((article, articleIdx) => (
+            <div key={article.id} className="flex flex-col space-y-4">
+              {/* Category and Live indicator */}
+              <div className="flex items-center space-x-2">
+                {article.isLiveUpdate && (
+                  <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                    LIVE UPDATES
+                  </span>
+                )}
+                {!article.isLiveUpdate && (
+                  <span className="bg-white text-black text-xs font-bold px-2 py-1 rounded">
+                    {article.category}
+                  </span>
+                )}
+              </div>
 
-            {/* Main headline */}
-            <h2 className="text-2xl font-bold leading-tight hover:underline cursor-pointer">
-              {article.title}
-            </h2>
+              {/* Main headline */}
+              <h2 className="text-2xl font-bold leading-tight hover:underline cursor-pointer">
+                {article.title}
+              </h2>
 
-            {/* Image with video play button */}
-            <div className="relative">
-              <img 
-                src={article.imageUrl} 
-                alt={article.title}
-                className="w-full h-64 object-cover rounded-lg"
-              />
-              {article.videoIcon && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-black bg-opacity-60 rounded-full p-4">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
+              {/* Image (no play button overlay) */}
+              <div className="relative">
+                <img 
+                  src={article.imageUrl} 
+                  alt={article.title}
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+              </div>
+              
+              {/* Attribution directly below image */}
+              <div className="text-xs text-gray-400 pt-2">
+                {article.id === 1 && "Young Kwak/Reuters"}
+                {article.id === 2 && "Ken Cedeno/UPI/Bloomberg/Getty Images"}
+              </div>
+
+              {/* Subtitle */}
+              <p className="text-white text-base leading-relaxed">
+                {article.subtitle}
+              </p>
+
+              {/* Bullet points */}
+              <div className="space-y-3">
+                {article.bullets.map((bullet, idx) => (
+                  <div key={idx} className="flex items-start space-x-3">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-white text-sm leading-relaxed hover:underline cursor-pointer inline">
+                      <span className="font-bold text-orange-500 mr-2">{paperNames[(articleIdx * 5 + idx) % paperNames.length]}:</span>
+                      {bullet.includes(':') ? (
+                        <>
+                          <span className="text-white">{bullet.split(':')[0]}:</span>
+                          <span className="text-white">{bullet.split(':').slice(1).join(':')}</span>
+                        </>
+                      ) : (
+                        bullet
+                      )}
+                      <span className="ml-1 align-middle text-orange-500 text-xs font-semibold inline-flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mr-0.5">
+                          <path d="M2.75 11.5A1.75 1.75 0 0 1 4.5 9.75h2.1a.25.25 0 0 0 .25-.25V8.21c0-.36.13-.71.36-.98l3.2-3.8a1.25 1.25 0 0 1 2.19.87v2.25c0 .14.11.25.25.25h2.2a1.75 1.75 0 0 1 1.7 2.18l-1.2 5A1.75 1.75 0 0 1 15.1 16H7.5a2.5 2.5 0 0 1-2.45-2.01l-.7-2.8a.25.25 0 0 0-.24-.19h-1.1a1.75 1.75 0 0 1-1.75-1.5Z"/>
+                        </svg>
+                        {getRandomLikeNumber(articleIdx, idx)}
+                      </span>
+                    </p>
                   </div>
+                ))}
+              </div>
+
+              {/* Rectangle under bullet points */}
+              <div className="bg-gray-900 rounded-md mt-6 p-6 w-full text-white text-sm">
+                <div className="flex flex-col items-center space-y-4">
+                  <p className="text-gray-300">Join the conversation for what others are seeing and saying.</p>
+                  <button
+                    className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-md transition-colors w-full"
+                  >
+                    Enter the thread
+                  </button>
                 </div>
-              )}
-            </div>
-            {/* Attribution directly below image */}
-            <div className="text-xs text-white pt-2">
-              {article.id === 1 && "Young Kwak/Reuters"}
-              {article.id === 2 && "Ken Cedeno/UPI/Bloomberg/Getty Images"}
-            </div>
-
-            {/* Subtitle */}
-            <p className="text-white text-base leading-relaxed">
-              {article.subtitle}
-            </p>
-
-            {/* Bullet points */}
-            <div className="space-y-3">
-              {article.bullets.map((bullet, idx) => (
-                <div key={idx} className="flex items-start space-x-3">
-                  <div className="w-1.5 h-1.5 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-white text-sm leading-relaxed hover:underline cursor-pointer inline">
-                    <span className="font-bold text-orange-500 mr-2">{paperNames[(articleIdx * 5 + idx) % paperNames.length]}:</span>
-                    {bullet.includes(':') ? (
-                      <>
-                        <span className="text-white">{bullet.split(':')[0]}:</span>
-                        <span className="text-white">{bullet.split(':').slice(1).join(':')}</span>
-                      </>
-                    ) : (
-                      bullet
-                    )}
-                    <span className="ml-1 align-middle text-orange-500 text-xs font-semibold inline-flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mr-0.5"><path d="M2.75 11.5A1.75 1.75 0 0 1 4.5 9.75h2.1a.25.25 0 0 0 .25-.25V8.21c0-.36.13-.71.36-.98l3.2-3.8a1.25 1.25 0 0 1 2.19.87v2.25c0 .14.11.25.25.25h2.2a1.75 1.75 0 0 1 1.7 2.18l-1.2 5A1.75 1.75 0 0 1 15.1 16H7.5a2.5 2.5 0 0 1-2.45-2.01l-.7-2.8a.25.25 0 0 0-.24-.19h-1.1a1.75 1.75 0 0 1-1.75-1.5Z"/></svg>
-                      {getRandomLikeNumber(articleIdx, idx)}
-                    </span>
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Rectangle under bullet points */}
-            <div className="bg-gray-900 rounded-md mt-6 p-6 w-full text-white text-sm">
-              <div className="flex flex-col items-center space-y-4">
-                <p className="text-gray-300">Join the conversation and see what others are seeing and saying.</p>
-                <button
-                  className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-md transition-colors w-full"
-                >
-                  Enter the thread
-                </button>
               </div>
             </div>
-
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+
+      {/* Divider and second news layout */}
+      <div className="my-4 border-t border-gray-800"></div>
+      <div className="bg-black text-white pl-20 md:pl-80 pr-20 md:pr-48 py-6">
+        {/* Section Headers */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 mb-8">
+          <div className="flex items-center space-x-2">
+            <div className="w-1 h-6 bg-white"></div>
+            <h2 className="text-xl font-bold uppercase tracking-wide">MORE FROM COMMUNITY REPORTERS</h2>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-1 h-6 bg-white"></div>
+            <h2 className="text-xl font-bold uppercase tracking-wide">LOCAL NEWS</h2>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4">
+          {/* LEFT COLUMN: MORE FROM COMMUNITY REPORTERS */}
+          <div className="flex flex-col space-y-4">
+            {/* Image */}
+            <div className="relative">
+              <img 
+                src="/30dc-trade-deals-01-qglv-superJumbo.jpg" 
+                alt="Gaza Crisis" 
+                className="w-full h-64 object-cover rounded-lg"
+              />
+            </div>
+            {/* Attribution */}
+            <div className="text-xs text-gray-400 pt-2">The Live Lens/Community Reporter Submission</div>
+            {/* Large bullet points */}
+            <ul className="space-y-4 mt-4">
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Tens of thousands flee central and northern Gaza after new evacuation orders and heavy bombing.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Reports: Israeli forces fired on unarmed crowds near food centers; over 500 Palestinians killed since May.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Ukraine hit by largest Russian aerial assault since invasion began; strikes reach far from frontlines.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Baltic states exit Mine Ban Treaty, citing new security threats.</li>
+            </ul>
+          </div>
+          {/* RIGHT COLUMN: LOCAL NEWS */}
+          <div className="flex flex-col space-y-4">
+            {/* Image */}
+            <div className="relative">
+              <img 
+                src="/pride.webp" 
+                alt="Local News" 
+                className="w-full h-64 object-cover rounded-lg"
+              />
+            </div>
+            {/* Attribution */}
+            <div className="text-xs text-gray-400 pt-2">Jason Bourne/Community Reporter Submission</div>
+            {/* Large bullet points */}
+            <ul className="space-y-4 mt-4">
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> San Francisco Board Approves New Affordable Housing Plan for Mission District.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> City Launches Crackdown on Illegal Sideshows After Weekend Traffic Chaos.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Golden Gate Park to Host Free Summer Concert Series Starting July 10.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> SFUSD Announces New Mental Health Resources for Public School Students.</li>
+              <li className="text-l font-semibold flex items-start hover:underline cursor-pointer"><span className="text-2xl mr-3">•</span> Local Tech Startups Rally to Support Clean Energy Initiatives in Bay Area.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
   );
 } 
