@@ -11,19 +11,18 @@ export default function Sidebar() {
         <BookmarkIcon className="h-7 w-7" />
       </div>
 
-      {/* Navigation icons */}
-      <nav className="flex flex-col items-center space-y-8 mt-6">
-        <HomeIcon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
-        <Squares2X2Icon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
-        <ChatBubbleLeftEllipsisIcon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
-        <BellIcon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
-      </nav>
-
-      {/* Spacer */}
-      <div className="flex-1" />
+      {/* Navigation icons (centered between top and bottom) */}
+      <div className="flex-1 flex items-center justify-center">
+        <nav className="flex flex-col items-center space-y-8">
+          <HomeIcon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
+          <Squares2X2Icon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
+          <ChatBubbleLeftEllipsisIcon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
+          <BellIcon className="h-7 w-7 text-gray-400 hover:text-white transition-colors" />
+        </nav>
+      </div>
 
       {/* Plus button */}
-      <div className="flex items-center justify-center w-12 h-12 bg-orange-500 rounded-full mt-auto cursor-pointer hover:opacity-90 transition-opacity">
+      <div className="flex items-center justify-center w-12 h-12 bg-orange-500 rounded-full cursor-pointer hover:opacity-90 transition-opacity">
         <PlusIcon className="h-7 w-7 text-white" />
       </div>
 
@@ -31,7 +30,7 @@ export default function Sidebar() {
       <img
         src={`https://i.pravatar.cc/40`}
         alt="User avatar"
-        className="w-10 h-10 rounded-full mt-8"
+        className="w-10 h-10 rounded-full mt-6"
       />
     </aside>
   );
