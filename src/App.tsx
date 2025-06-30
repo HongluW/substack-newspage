@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import CategoryTabs from './components/CategoryTabs';
@@ -50,22 +50,31 @@ const posts = [
 ];
 
 function App() {
+  const [activeTab, setActiveTab] = useState('Home');
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Sidebar />
       <div className="flex flex-col min-h-screen">
         <TopBar />
-        <CategoryTabs />
-        <StoryCarousel />
-        <div className="flex justify-center w-full">
-          <div className="flex flex-col w-full max-w-xl">
-            <PostComposer />
-            {/* Posts list */}
-            {posts.map((post, idx) => (
-              <Post key={idx} {...post} />
-            ))}
-          </div>
-        </div>
+        <CategoryTabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+        {activeTab === 'Home' && (
+          <>
+            <StoryCarousel />
+            <div className="relative flex flex-col pt-3 pb-16 pl-4 md:pl-20 lg:pl-80 pr-0 md:pr-12 lg:pr-48 w-full">
+              <div className="flex flex-col w-full max-w-xl mx-auto">
+                <PostComposer />
+                {/* Posts list */}
+                {posts.map((post, idx) => (
+                  <Post key={idx} {...post} />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

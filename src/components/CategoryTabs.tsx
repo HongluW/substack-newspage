@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
+interface CategoryTabsProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+  onNewsToggle?: () => void;
+}
+
 const tabs = [
+  "News",
   "Home",
   "Following",
   "New Bestsellers",
@@ -16,8 +23,7 @@ const tabs = [
   "Finance",
 ];
 
-export default function CategoryTabs() {
-  const [active, setActive] = useState("Home");
+export default function CategoryTabs({ activeTab, setActiveTab, onNewsToggle }: CategoryTabsProps) {
   return (
     <div className="bg-black pl-20 md:pl-80 pr-20 md:pr-48">
       <div className="overflow-x-auto whitespace-nowrap">
@@ -25,9 +31,12 @@ export default function CategoryTabs() {
           {tabs.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActive(tab)}
+              onClick={() => {
+                setActiveTab(tab);
+                if (tab === "News" && onNewsToggle) onNewsToggle();
+              }}
               className={`px-3 py-1.5 text-sm rounded-md whitespace-nowrap font-medium transition-colors ${
-                active === tab
+                activeTab === tab
                   ? "bg-white text-black"
                   : "bg-gray-900 text-gray-400 hover:bg-gray-800"
               }`}

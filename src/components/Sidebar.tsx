@@ -5,7 +5,7 @@ const iconBase = "h-6 w-6 text-gray-400 hover:text-white transition-colors";
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex flex-col items-center bg-black text-white w-20 py-6 space-y-8 fixed inset-y-0 left-0 z-20">
+    <aside className="hidden md:flex flex-col items-center bg-black text-white w-20 py-6 space-y-8 fixed inset-y-0 left-0 z-20 border-r border-gray-900">
       {/* Top orange bookmark icon */}
       <div className="flex items-center justify-center w-12 h-12 bg-orange-500 rounded text-white">
         <BookmarkIcon className="h-7 w-7" />

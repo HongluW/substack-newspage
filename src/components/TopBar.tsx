@@ -19,7 +19,7 @@ export default function TopBar() {
 
       {/* Right side */}
       <div className="flex items-center space-x-6">
-        <button className="bg-gray-900 px-5 py-3 rounded-md text-base hover:bg-gray-800">Dashboard</button>
+        <button className="bg-gray-900 px-5 py-3 rounded-md text-base font-semibold hover:bg-gray-800">Dashboard</button>
         <img
           src={`https://i.pravatar.cc/32`}
           alt="avatar"
