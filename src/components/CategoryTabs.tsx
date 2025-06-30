@@ -68,7 +68,7 @@ export default function CategoryTabs({ activeTab, setActiveTab, onNewsToggle }: 
                     className="text-white text-base hover:underline cursor-pointer transition-all flex-1"
                     onClick={() => alert('Clicked: Senate holds vote-a-rama on President Trump’s sweeping domestic agenda bill. Watch live')}
                   >
-                    Senate holds vote-a-rama on President Trump’s sweeping domestic agenda bill. Chat with us live
+                    Senate holds vote-a-rama on President Trump’s sweeping domestic agenda bill. Engage live
                   </span>
                   <button onClick={() => setShowBanner(false)} className="ml-4 text-white text-2xl font-light hover:opacity-80 focus:outline-none">
                     &times;

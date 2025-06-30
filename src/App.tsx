@@ -6,6 +6,7 @@ import StoryCarousel from './components/StoryCarousel';
 import PostComposer from './components/PostComposer';
 import Post from './components/Post';
 import TrendsPanel from './components/TrendsPanel';
+import NewsLayout from './components/NewsLayout';
 
 const posts = [
   {
@@ -76,7 +77,12 @@ function App() {
             </div>
           </>
         )}
-        {activeTab === 'News' && <TrendsPanel />}
+        {activeTab === 'News' && (
+          <>
+            <NewsLayout />
+            <TrendsPanel />
+          </>
+        )}
       </div>
     </div>
   );
