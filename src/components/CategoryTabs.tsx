@@ -56,32 +56,48 @@ export default function CategoryTabs({ activeTab, setActiveTab, onNewsToggle }: 
           ))}
         </div>
       </div>
-      {/* Red gradient banner */}
-      {showBanner && (
-        <div className="relative w-full rounded-b-lg overflow-hidden mb-2">
-          <div className="bg-gradient-to-r from-orange-500 to-orange-500 px-6 py-4 flex items-center">
-            <div className="flex-1">
-              <span className="font-extrabold text-white text-lg mr-4">HAPPENING NOW</span>
-              <span className="text-white text-base">Senate holds vote-a-rama on President Trump's sweeping domestic agenda bill. Watch live</span>
+      {/* Red gradient banner and Trending bar only in News view */}
+      {activeTab === 'News' && (
+        <>
+          {showBanner && (
+            <div className="relative w-full rounded-b-lg overflow-hidden mb-2">
+              <div className="bg-gradient-to-r from-orange-500 to-orange-500 px-6 py-4 flex flex-col">
+                <span className="font-extrabold text-white text-lg mb-1">HAPPENING NOW</span>
+                <div className="flex items-center">
+                  <span
+                    className="text-white text-base hover:underline cursor-pointer transition-all flex-1"
+                    onClick={() => alert('Clicked: Senate holds vote-a-rama on President Trump’s sweeping domestic agenda bill. Watch live')}
+                  >
+                    Senate holds vote-a-rama on President Trump’s sweeping domestic agenda bill. Chat with us live
+                  </span>
+                  <button onClick={() => setShowBanner(false)} className="ml-4 text-white text-2xl font-light hover:opacity-80 focus:outline-none">
+                    &times;
+                  </button>
+                </div>
+              </div>
             </div>
-            <button onClick={() => setShowBanner(false)} className="ml-4 text-white text-2xl font-light hover:opacity-80 focus:outline-none">
-              &times;
-            </button>
+          )}
+          <div className="w-full bg-transparent px-4 py-2 flex items-center space-x-4 overflow-x-auto border-b border-gray-900 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {trendingBar.map((item, idx) => (
+              <React.Fragment key={idx}>
+                {idx !== 0 && <span className="text-gray-300 mx-2">|</span>}
+                <span
+                  className={'whitespace-nowrap hover:underline cursor-pointer transition-all' + (idx === 0 ? ' font-bold' : '')}
+                  onClick={() => alert(`Clicked: ${item.value}`)}
+                >
+                  {item.label && (
+                    <span className={idx === 0 ? 'text-orange-500' : ''}>{item.label} </span>
+                  )}
+                  {item.value}
+                </span>
+              </React.Fragment>
+            ))}
           </div>
-        </div>
+        </>
       )}
-      {/* Trending bar */}
-      <div className="w-full bg-transparent px-4 py-2 flex items-center space-x-4 overflow-x-auto border-b border-gray-900">
-        {trendingBar.map((item, idx) => (
-          <React.Fragment key={idx}>
-            {idx !== 0 && <span className="text-gray-300 mx-2">|</span>}
-            <span className={item.className + ' whitespace-nowrap'}>
-              {item.label && <span>{item.label} </span>}
-              {item.value}
-            </span>
-          </React.Fragment>
-        ))}
-      </div>
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+      `}</style>
     </div>
   );
-} 
+}
