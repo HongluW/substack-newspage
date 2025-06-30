@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const newsArticles = [
   {
@@ -48,6 +48,31 @@ function getRandomLikeNumber(articleIdx: number, bulletIdx: number) {
 }
 
 export default function NewsLayout() {
+  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
+  const [likedItems, setLikedItems] = useState<Record<string, boolean>>({});
+
+  const handleLike = (articleId: number, bulletIdx: number) => {
+    const key = `${articleId}-${bulletIdx}`;
+    setLikeCounts(prev => ({
+      ...prev,
+      [key]: (prev[key] || getRandomLikeNumber(articleId - 1, bulletIdx)) + 1
+    }));
+    setLikedItems(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const getLikeCount = (articleId: number, bulletIdx: number) => {
+    const key = `${articleId}-${bulletIdx}`;
+    return likeCounts[key] || getRandomLikeNumber(articleId - 1, bulletIdx);
+  };
+
+  const isLiked = (articleId: number, bulletIdx: number) => {
+    const key = `${articleId}-${bulletIdx}`;
+    return likedItems[key] || false;
+  };
+
   return (
     <>
       <div className="bg-black text-white pl-20 md:pl-80 pr-20 md:pr-48 py-6">
@@ -131,12 +156,22 @@ export default function NewsLayout() {
                       ) : (
                         bullet
                       )}
-                      <span className="ml-1 align-middle text-orange-500 text-xs font-semibold inline-flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mr-0.5">
+                      <button 
+                        className="ml-1 align-middle text-orange-500 text-xs font-semibold inline-flex items-center hover:text-orange-400 transition-colors"
+                        onClick={() => handleLike(article.id, idx)}
+                      >
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 20 20" 
+                          fill={isLiked(article.id, idx) ? "currentColor" : "none"} 
+                          stroke={isLiked(article.id, idx) ? "none" : "currentColor"}
+                          strokeWidth={isLiked(article.id, idx) ? 0 : 1.5}
+                          className="w-4 h-4 mr-0.5"
+                        >
                           <path d="M2.75 11.5A1.75 1.75 0 0 1 4.5 9.75h2.1a.25.25 0 0 0 .25-.25V8.21c0-.36.13-.71.36-.98l3.2-3.8a1.25 1.25 0 0 1 2.19.87v2.25c0 .14.11.25.25.25h2.2a1.75 1.75 0 0 1 1.7 2.18l-1.2 5A1.75 1.75 0 0 1 15.1 16H7.5a2.5 2.5 0 0 1-2.45-2.01l-.7-2.8a.25.25 0 0 0-.24-.19h-1.1a1.75 1.75 0 0 1-1.75-1.5Z"/>
                         </svg>
-                        {getRandomLikeNumber(articleIdx, idx)}
-                      </span>
+                        {getLikeCount(article.id, idx)}
+                      </button>
                     </p>
                   </div>
                 ))}
