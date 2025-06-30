@@ -13,7 +13,7 @@ interface PostProps {
 
 export default function Post({ author, date, content }: PostProps) {
   return (
-    <article className="bg-gray-900 ml-0 md:ml-16 px-6 py-6 border-b border-gray-800 text-gray-200">
+    <article className="bg-black ml-0 md:ml-16 px-6 py-6 border-b border-gray-900 text-gray-200">
       <div className="flex items-start space-x-4 mb-2">
         <img
           src="https://i.pravatar.cc/40"
@@ -34,13 +34,13 @@ export default function Post({ author, date, content }: PostProps) {
         {content}
       </p>
       <div className="flex items-center space-x-6 text-xs text-gray-400">
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-white">
+        <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
           <HeartIcon className="h-4 w-4" /> <span>35.9K</span>
         </div>
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-white">
+        <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
           <ChatBubbleLeftIcon className="h-4 w-4" /> <span>268</span>
         </div>
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-white">
+        <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
           <ArrowUpTrayIcon className="h-4 w-4" /> <span>4.9K</span>
         </div>
       </div>

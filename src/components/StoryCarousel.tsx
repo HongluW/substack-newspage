@@ -8,7 +8,7 @@ const stories = Array.from({ length: 10 }).map((_, i) => ({
 
 export default function StoryCarousel() {
   return (
-    <div className="overflow-x-auto ml-0 md:ml-16 bg-gray-900 border-b border-gray-800 py-4">
+    <div className="overflow-x-auto ml-0 md:ml-16 bg-black border-b border-gray-900 py-4">
       <div className="flex space-x-4 px-4">
         {stories.map((story) => (
           <div
