@@ -15,7 +15,10 @@ module.exports = {
         gray: {
           900: '#232525',
           800: '#232525',
+          400: '#777777',
         },
+        'composer-bg': '#1B1C1D',
+        'composer-hover': '#232525',
       },
     },
   },

@@ -7,7 +7,7 @@ export default function PostComposer() {
         <button
           type="button"
           aria-label="New post"
-          className="flex items-center gap-3 p-4 bg-gray-900 hover:bg-gray-800 transition-colors rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 border border-gray-900"
+          className="flex items-center gap-3 p-4 bg-composer-bg hover:bg-composer-hover transition-colors rounded-md border-2 border-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
         >
           <span className="flex items-center justify-center w-9 h-9 rounded-full overflow-hidden bg-gray-900 border border-gray-900">
             <img
