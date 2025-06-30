@@ -5,6 +5,7 @@ import CategoryTabs from './components/CategoryTabs';
 import StoryCarousel from './components/StoryCarousel';
 import PostComposer from './components/PostComposer';
 import Post from './components/Post';
+import TrendsPanel from './components/TrendsPanel';
 
 const posts = [
   {
@@ -75,6 +76,7 @@ function App() {
             </div>
           </>
         )}
+        {activeTab === 'News' && <TrendsPanel />}
       </div>
     </div>
   );
