@@ -2,46 +2,74 @@ import React from "react";
 import {
   HeartIcon,
   ChatBubbleLeftIcon,
+  ArrowPathRoundedSquareIcon,
   ArrowUpTrayIcon,
+  EllipsisHorizontalIcon,
 } from "@heroicons/react/24/outline";
 
 interface PostProps {
   author: string;
   date: string;
   content: string;
+  avatarUrl: string;
+  authorUrl: string;
+  dateUrl: string;
 }
 
-export default function Post({ author, date, content }: PostProps) {
+export default function Post({ author, date, content, avatarUrl, authorUrl, dateUrl }: PostProps) {
   return (
-    <article className="bg-black ml-0 md:ml-16 px-6 py-6 border-b border-gray-900 text-gray-200">
-      <div className="flex items-start space-x-4 mb-2">
-        <img
-          src="https://i.pravatar.cc/40"
-          alt="avatar"
-          className="w-10 h-10 rounded-full"
-        />
-        <div className="flex-1">
-          <div className="flex items-center justify-between">
-            <div className="text-sm font-semibold text-white">{author}</div>
-            <button className="text-orange-500 text-sm font-medium">Subscribe</button>
+    <article className="flex flex-col relative bg-black ml-0 md:ml-16 px-6 py-8 border-b border-gray-900">
+      <div className="flex gap-3 items-start">
+        {/* Avatar as link */}
+        <a href={authorUrl} className="flex-shrink-0">
+          <span className="block w-9 h-9 rounded-full overflow-hidden bg-gray-900 border border-gray-900">
+            <img
+              src={avatarUrl}
+              alt={`${author}'s avatar`}
+              width={36}
+              height={36}
+              className="object-cover w-9 h-9 rounded-full"
+              draggable="false"
+            />
+          </span>
+        </a>
+        {/* Main content */}
+        <div className="flex flex-col flex-grow min-w-0 gap-2">
+          {/* Header row */}
+          <div className="flex items-center min-w-0 gap-2 h-5">
+            {/* Author as link */}
+            <a href={authorUrl} className="font-medium text-white hover:underline truncate max-w-[120px]">{author}</a>
+            {/* Date as link */}
+            <a href={dateUrl} className="text-xs text-gray-400 hover:underline ml-1 truncate">{date}</a>
+            {/* Subscribe button */}
+            <button className="ml-2 px-2 py-0.5 text-xs rounded bg-transparent text-orange-500 border border-orange-500 hover:bg-orange-500 hover:text-white transition-colors">Subscribe</button>
+            {/* Ellipsis menu */}
+            <button className="ml-2 p-1 rounded hover:bg-gray-900 text-gray-500">
+              <EllipsisHorizontalIcon className="h-5 w-5" />
+            </button>
           </div>
-          <div className="text-xs text-gray-400">{date}</div>
-        </div>
-        {/* menu placeholder */}
-        <div className="text-gray-500">•••</div>
-      </div>
-      <p className="text-sm leading-relaxed text-gray-300 whitespace-pre-line mb-4">
-        {content}
-      </p>
-      <div className="flex items-center space-x-6 text-xs text-gray-400">
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
-          <HeartIcon className="h-4 w-4" /> <span>35.9K</span>
-        </div>
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
-          <ChatBubbleLeftIcon className="h-4 w-4" /> <span>268</span>
-        </div>
-        <div className="flex items-center space-x-1 cursor-pointer hover:text-orange-500">
-          <ArrowUpTrayIcon className="h-4 w-4" /> <span>4.9K</span>
+          {/* Post content */}
+          <div className="text-gray-200 text-sm leading-relaxed whitespace-pre-line">
+            {content}
+          </div>
+          {/* Action buttons */}
+          <div className="flex gap-4 pt-2">
+            <button className="flex items-center gap-1 text-gray-400 hover:text-orange-500 text-xs">
+              <HeartIcon className="h-5 w-5" />
+              <span>35.9K</span>
+            </button>
+            <button className="flex items-center gap-1 text-gray-400 hover:text-orange-500 text-xs">
+              <ChatBubbleLeftIcon className="h-5 w-5" />
+              <span>268</span>
+            </button>
+            <button className="flex items-center gap-1 text-gray-400 hover:text-orange-500 text-xs">
+              <ArrowPathRoundedSquareIcon className="h-5 w-5" />
+              <span>4.9K</span>
+            </button>
+            <button className="flex items-center gap-1 text-gray-400 hover:text-orange-500 text-xs">
+              <ArrowUpTrayIcon className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </div>
     </article>
