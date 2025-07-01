@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const newsArticles = [
   {
@@ -50,6 +51,7 @@ function getRandomLikeNumber(articleIdx: number, bulletIdx: number) {
 export default function NewsLayout() {
   const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
   const [likedItems, setLikedItems] = useState<Record<string, boolean>>({});
+  const navigate = useNavigate();
 
   const handleLike = (articleId: number, bulletIdx: number) => {
     const key = `${articleId}-${bulletIdx}`;
@@ -95,9 +97,18 @@ export default function NewsLayout() {
 
               {/* Main headline */}
               <div className="relative group">
-                <h2 className="text-2xl font-bold leading-tight hover:underline cursor-pointer">
-                  {article.title}
-                </h2>
+                {article.id === 1 ? (
+                  <h2
+                    className="text-2xl font-bold leading-tight hover:underline cursor-pointer"
+                    onClick={() => navigate('/idaho-fire')}
+                  >
+                    {article.title}
+                  </h2>
+                ) : (
+                  <h2 className="text-2xl font-bold leading-tight hover:underline cursor-pointer">
+                    {article.title}
+                  </h2>
+                )}
                 {/* Left hover popup for first article */}
                 {article.id === 1 && (
                   <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
