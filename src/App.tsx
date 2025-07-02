@@ -92,9 +92,34 @@ function IdahoFirePage() {
             <div className="text-gray-400 text-sm pt-2 pl-1">Source: Getty Images</div>
           </div>
         </div>
-        {/* Subtitle header for threads */}
-        <div className="w-full px-6 md:px-40 lg:px-48 mt-16 mb-4">
-          <h2 className="text-2xl font-bold text-white tracking-tight">Top Reporting Threads</h2>
+        {/* Side-by-side: Community Sourced Notes & Top Reporting Threads */}
+        <div className="w-full px-6 md:px-40 lg:px-48 mt-12 mb-12 flex flex-col lg:flex-row gap-12 items-start justify-center">
+          {/* Community Sourced Notes */}
+          <div className="flex-1 min-w-[320px] max-w-xl">
+            <h2 className="text-2xl font-bold text-white tracking-tight mb-4">Community Sourced Notes</h2>
+            <div className="bg-composer-bg border-2 border-gray-900 rounded-2xl p-6 text-gray-300 text-base">
+              <p>See what local readers, reporters, and experts are sharing about this story. Notes are fact-checked and voted up by the community.</p>
+            </div>
+          </div>
+          {/* Divider */}
+          <div className="hidden lg:flex h-full mx-6">
+            <div className="w-px" style={{ minHeight: '220px', backgroundColor: '#f3f4f6', opacity: 0.5 }} />
+          </div>
+          {/* Top Reporting Threads */}
+          <div className="flex-1 min-w-[320px] max-w-xl">
+            <h2 className="text-2xl font-bold text-white tracking-tight mb-4">Top Reporting Threads</h2>
+            <div className="flex flex-col gap-4">
+              <button className="p-6 bg-composer-bg hover:bg-composer-hover transition-colors rounded-full border-2 border-gray-900 text-center text-gray-200 text-lg font-bold focus:outline-none">
+                The Daily Thread
+              </button>
+              <button className="p-6 bg-composer-bg hover:bg-composer-hover transition-colors rounded-full border-2 border-gray-900 text-center text-gray-200 text-lg font-bold focus:outline-none">
+                The Live Lens
+              </button>
+              <button className="p-6 bg-composer-bg hover:bg-composer-hover transition-colors rounded-full border-2 border-gray-900 text-center text-gray-200 text-lg font-bold focus:outline-none">
+                The Signal
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
