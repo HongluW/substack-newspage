@@ -97,8 +97,31 @@ function IdahoFirePage() {
           {/* Community Sourced Notes */}
           <div className="flex-1 min-w-[320px] max-w-xl">
             <h2 className="text-2xl font-bold text-white tracking-tight mb-4">Community Sourced Notes</h2>
-            <div className="bg-composer-bg border-2 border-gray-900 rounded-2xl p-6 text-gray-300 text-base">
-              <p>See what local readers, reporters, and experts are sharing about this story. Notes are fact-checked and voted up by the community.</p>
+            <div className="bg-composer-bg border-2 border-gray-900 rounded-2xl p-6">
+              <div className="relative flex flex-col">
+                {/* Vertical line through all circles */}
+                <div className="absolute left-2.5 w-0.5 bg-gray-300 z-0" style={{top: '14px', height: 'calc(100% - 2.2rem)'}} />
+                {/* Step 1 */}
+                <div className="flex items-center relative mb-8">
+                  <div className="w-5 h-5 rounded-full bg-orange-400 border-2 border-white shadow relative z-10 flex-shrink-0" />
+                  <div className="ml-6 text-gray-200 text-base">Multiple local residents confirmed seeing the suspect near the fire before authorities arrived.</div>
+                </div>
+                {/* Step 2 */}
+                <div className="flex items-center relative mb-8">
+                  <div className="w-5 h-5 rounded-full bg-orange-400 border-2 border-white shadow relative z-10 flex-shrink-0" />
+                  <div className="ml-6 text-gray-200 text-base">Firefighters reported hearing gunshots as they approached the scene, according to radio dispatch logs.</div>
+                </div>
+                {/* Step 3 */}
+                <div className="flex items-center relative">
+                  <div className="w-5 h-5 rounded-full bg-orange-400 border-2 border-white shadow relative z-10 flex-shrink-0" />
+                  <div className="ml-6 text-gray-200 text-base">Community volunteers are organizing a support fund for affected families, with details shared on local forums.</div>
+                </div>
+                {/* Step 4 - Empty/Updating */}
+                <div className="flex items-center relative mt-8">
+                  <div className="w-5 h-5 rounded-full bg-transparent border-2 border-gray-400 relative z-10 flex-shrink-0" />
+                  <div className="ml-6 text-gray-400 text-base italic">updating</div>
+                </div>
+              </div>
             </div>
           </div>
           {/* Divider */}
